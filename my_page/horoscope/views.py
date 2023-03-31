@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 signs = {
     "aries": "Овен - первый знак зодиака, планета Марс (с 21 марта по 20 апреля).",
     "taurus": "Телец - второй знак зодиака, планета Венера (с 21 апреля по 21 мая).",
@@ -17,9 +17,17 @@ signs = {
 }
 
 
-def get_horoscope_by_sign(request, sign_of_zodiac):
+def get_horoscope_by_sign(request, sign_of_zodiac: str):
     default = 'Нет такого знака зодиака: {}'.format(sign_of_zodiac)
     value = signs.get(sign_of_zodiac, default)
     return HttpResponse(value)
 
+
+def get_horoscope_by_num(request, sign_of_zodiac: int):
+    zodiacs = list(signs)
+    if sign_of_zodiac > len(zodiacs):
+        return HttpResponseNotFound(f"Неправильный порядковый номер {sign_of_zodiac}")
+    name_zodiac = zodiacs[sign_of_zodiac]
+    redirect_url = reverse("horoscope-name", args=(name_zodiac, ))
+    return HttpResponseRedirect(redirect_url)
 # Create your views here.
