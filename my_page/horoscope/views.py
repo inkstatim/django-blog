@@ -16,6 +16,38 @@ signs = {
     "pisces": "Рыбы - двенадцатый знак зодиака, планеты Юпитер (с 20 февраля по 20 марта)."
 }
 
+zodiac_element = {
+    'fire': ['aries', 'leo', 'sagittarius'],
+    'earth': ['taurus', 'virgo', 'capricorn'],
+    'air': ['gemini', 'libra', 'aquarius'],
+    'water': ['cancer', 'scorpio', 'pisces']
+}
+
+def type_sign(request):
+    li_elements= ''
+    for type in zodiac_element:
+        li_elements += f"<li><a href='{type}'>{type.title()}</a></li>"
+    return HttpResponse(f'<ol>{li_elements}</ol>')
+def type(request, type_name):
+    li_elements = ""
+    for sign in zodiac_element[type_name]:
+        redirect_path = reverse("horoscope-name", args=(sign,))
+        li_elements += f"<li><a href='{redirect_path}'>{sign.title()}</a></li>"
+    response = f'''
+      <ol> {li_elements} </ol>
+      '''
+    return HttpResponse(response)
+def index(request):
+    zodiacs = list(signs)
+    li_elements = ""
+    for sign in zodiacs:
+        redirect_path = reverse("horoscope-name", args=(sign,))
+        li_elements+=f"<li><a href='{redirect_path}'>{sign.title()}</a></li>"
+    response = f'''
+    <ol> {li_elements} </ol>
+    '''
+    return HttpResponse(response)
+
 
 def get_horoscope_by_sign(request, sign_of_zodiac: str):
     default = 'Нет такого знака зодиака: {}'.format(sign_of_zodiac)
