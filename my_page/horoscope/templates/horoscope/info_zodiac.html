@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-    <h2>Главная страница</h2>
-    <h4>Добро пожаловать в мой блог</h4>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}
+    Гороскоп
+{% endblock %}
+
+
+{% block content %}
+    {% include 'includes/navbar.html' %}
+    {% for zodiac in zodiacs %}
+        <li><a href="{% url 'horoscope-name' sign_of_zodiac=zodiac %}">{{ zodiac|title }}</a></li>
+    {% endfor %}
+{% endblock %}
+
+
