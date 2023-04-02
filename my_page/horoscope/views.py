@@ -39,14 +39,10 @@ def type(request, type_name):
     return HttpResponse(response)
 def index(request):
     zodiacs = list(signs)
-    li_elements = ""
-    for sign in zodiacs:
-        redirect_path = reverse("horoscope-name", args=(sign,))
-        li_elements+=f"<li><a href='{redirect_path}'>{sign.title()}</a></li>"
-    response = f'''
-    <ol> {li_elements} </ol>
-    '''
-    return HttpResponse(response)
+    context = {
+        'zodiacs': zodiacs
+    }
+    return render(request, 'horoscope/info_zodiac.html', context=context )
 
 
 def get_horoscope_by_sign(request, sign_of_zodiac: str):
