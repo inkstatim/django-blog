@@ -42,7 +42,7 @@ def index(request):
     context = {
         'zodiacs': zodiacs
     }
-    return render(request, 'horoscope/info_zodiac.html', context=context )
+    return render(request, 'horoscope/index.html', context=context )
 
 
 def get_horoscope_by_sign(request, sign_of_zodiac: str):

@@ -13,9 +13,12 @@ people = [
     {'name': 'Ипат Власович Ильин', 'age': 47, 'phone': '88004779773'}
 ]
 
-def test_index(requsts):
+def test_index(requests):
     context = {
     'people': people
     }
-    return render(requsts, 'test_some_feature/test_h.html', context=context)
+    return render(requests, 'test_some_feature/test_h.html', context=context)
+
+def get_beautiful_table(requests):
+    return render(requests, 'test_some_feature/table.html')
 # Create your views here.
