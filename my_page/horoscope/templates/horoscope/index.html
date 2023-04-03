@@ -12,7 +12,7 @@
 
 
 {% block content %}
-    {% include 'includes/navbar.html' %}
+    <h1>Приложения Гороскоп</h1>
     <ul>
      {% for zodiac in zodiacs %}
         <li><a href="{% url 'horoscope-name' sign_of_zodiac=zodiac %}">{{ zodiac|title }}</a></li>
