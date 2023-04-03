@@ -1,3 +1,60 @@
 html{
-    background-color: red;
+    background-color: steelblue;
+}
+
+ul {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    list-style-type: none;
+    background-color: #f1f1f1;
+    width: 90%;
+    max-width: 35rem;
+    border-radius: 20px;
+    margin: 2rem auto;
+    padding: 1px;
+}
+
+ul li {
+    text-align: center;
+    width: 100%;
+    font-size: 3rem;
+    padding: 2rem 1rem;
+}
+
+ul a:hover, ul a:active {
+    color: #eca8b5;
+}
+
+h1 {
+    color: antiquewhite;
+    text-align: center;
+    font-family: "Andale Mono", AndaleMono, monospace;
+    font-size:48px;
+    text-decoration: underline;
+}
+nav {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+nav a {
+    color: white;
+    display: block;
+    font-size: 2rem;
+    margin: 20px;
+}
+
+nav a:hover, ul a:active {
+    color: #eca8b5;
 }
