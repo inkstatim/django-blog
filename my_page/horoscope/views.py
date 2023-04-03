@@ -44,11 +44,16 @@ def index(request):
     }
     return render(request, 'horoscope/index.html', context=context )
 
-
 def get_horoscope_by_sign(request, sign_of_zodiac: str):
-    default = 'Нет такого знака зодиака: {}'.format(sign_of_zodiac)
-    value = signs.get(sign_of_zodiac, default)
-    return HttpResponse(value)
+    description = signs.get(sign_of_zodiac)
+    zodiacs = list(signs)
+    data = {
+        'description':description,
+        'sign': sign_of_zodiac,
+        'zodiacs':zodiacs,
+        'sign_name':description.split()[0]
+    }
+    return render(request, 'horoscope/info_zodiac.html', context=data)
 
 
 def get_horoscope_by_num(request, sign_of_zodiac: int):
