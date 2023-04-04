@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'movie_app'
+    'movie_app',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -74,14 +75,13 @@ WSGI_APPLICATION = 'movie_proj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mitatskni',  # имя бд (у меня по умолнчанию)
-        'USER': 'mitatskni',  # имя пользователя (у меня по умолнчанию)
-        'PASSWORD': '',  # пароль при входе в субд
-        'HOST': 'localhost',  # тут по документации django можно оставить пустым или localhost
-        'PORT': '5432'
+        'NAME': local_settings.name_bd,  # имя бд (у меня по умолнчанию)
+        'USER': local_settings.user_bd,  # имя пользователя (у меня по умолнчанию)
+        'PASSWORD': local_settings.password_bd,  # пароль при входе в субд
+        'HOST': local_settings.host_bd,  # тут по документации django можно оставить пустым или localhost
+        'PORT': local_settings.port_bd
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
