@@ -5,7 +5,10 @@
 {% block content %}
     <h2>Список всех фильмов</h2>
     {% for movie in movies %}
-        <li><a href="{{ movie.get_url }}">{{ movie.name }}</a> , Рейтинг - {{ movie.rating }}, Год выхода - {{ movie.year }}, Бюджет - {{ movie.budget }} </li>
+        <li><a href="{{ movie.get_url }}">{{ movie.name }}</a> ,
+            Рейтинг - {{ movie.rating }},
+            Год выхода - {{ movie.year }},
+            Бюджет - {{ movie.budget }} </li>
     {% endfor %}
 
 {% endblock %}
