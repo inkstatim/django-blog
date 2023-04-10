@@ -1,9 +1,14 @@
 from django.contrib import admin
-from .models import Movie, Director, Actor
+from .models import Movie, Director, Actor, DressingRoom
 from django.db.models import QuerySet
 
 admin.site.register(Director)
 admin.site.register(Actor)
+
+@admin.register(DressingRoom)
+class DressingRoomAdmin(admin.ModelAdmin):
+    list_display = ['floor', 'number', 'actor']
+
 
 
 class RatingFilter(admin.SimpleListFilter):
