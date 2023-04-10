@@ -5,5 +5,13 @@
     <h3> Имя - {{ name_dir.first_name }} </h3>
     <h3> Фамилия - {{ name_dir.last_name }}</h3>
     <h3> Почта - {{ name_dir.director_email }}</h3>
+     <hr>
+    <h3>Список фильмов</h3>
+    <ul>
+    {% for mov in name_dir.movie_set.all %}
+        <li><a href="{{ mov.get_url }}">{{ mov }}</a></li>
+    {% endfor %}
+
+    </ul>
 
 {% endblock %}
