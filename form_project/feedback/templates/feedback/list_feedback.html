@@ -1,0 +1,23 @@
+{% extends 'feedback/base.html' %}
+
+{% block title %}
+Отзывы всех
+{% endblock %}
+
+{% block content %}
+<table>
+        <caption> <h2>Список всех отзывов </h2>   </caption>
+        <thead>
+        <tr>
+        <th>Фамилия</th>        <th>Имя</th>        <th>Отзыв</th>        <th>Рейтинг</th>
+        </tr>
+        </thead>
+            <tbody>
+            {% for feedback in all_feeds %}
+            <tr>
+<td>{{feedback.surname}}</td>  <td>{{feedback.name}}</td>  <td>{{feedback.feedback}}</td> <td>{{feedback.rating}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'feedback/base.html' %}
+
+{% block title %}feedback details{% endblock %}
+
+{% block content %}
+<h2><a href="http://127.0.0.1:8000/">HOME</a></h2>
+<h2><a href="http://127.0.0.1:8000/list_feed">ALL FEEDBACK LIST</a></h2>
+<h2><a href="http://127.0.0.1:8000/{{current.id}}">EDIT</a></h2>
+<h2>feedback details</h2>
+<h2>name: {{current.name|title}}</h2>
+<h2>surname: {{current.surname|title}}</h2>
+<h2>feedback: {{current.feedback}}</h2>
+<h2>rating: {{current.rating}}</h2>
+<h2>id: {{current.id}}</h2>
+{% endblock %}
