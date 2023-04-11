@@ -1,0 +1,20 @@
+{% extends 'feedback/base.html' %}
+
+{% block title %}
+    Отзыв
+{% endblock %}
+
+{% block content %}
+    <h2>Оставь отзыв</h2> <br>
+    <form  method="post">
+        {% csrf_token %}
+        {% for foo in form %}
+            <div class="form-style">
+                {{ foo.label }}
+                {{ foo.errors }}
+                {{ foo }}
+            </div>
+        {% endfor %}
+        <button type="submit">Send</button>
+    </form>
+{% endblock %}
