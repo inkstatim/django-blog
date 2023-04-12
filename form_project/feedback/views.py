@@ -6,6 +6,7 @@ from django.views import View
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView
 
+
 class FeedbackView(View):
     def get(self, request):
         form = FeedbackFrom()
@@ -42,13 +43,18 @@ class UpdateFeedbackView(View):
         return render(request, 'feedback/feedback.html', context={'form': form})
 
 
-class ListFeedBack(TemplateView):
+# class ListFeedBack(TemplateView):
+#     template_name = 'feedback/list_feedback.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['all_feeds'] = Feedback.objects.all()
+#         return context
+class ListFeedBack(ListView):
     template_name = 'feedback/list_feedback.html'
+    model = Feedback
+    context_object_name = 'all_feeds'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['all_feeds'] = Feedback.objects.all()
-        return context
 
 class DetailFeedBack(TemplateView):
     template_name = 'feedback/detail_feedback.html'
