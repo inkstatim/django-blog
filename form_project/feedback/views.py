@@ -4,21 +4,31 @@ from .forms import FeedbackFrom
 from .models import Feedback
 from django.views import View
 from django.views.generic.base import TemplateView
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import FormView
+
+class FeedbackView(FormView):
+    form_class = FeedbackFrom
+    template_name = 'feedback/feedback.html'
+    success_url = '/done'
+
+    def form_valid(self, form):
+        form.save()
+        return super(FeedbackView, self).form_valid(form)
 
 
-class FeedbackView(View):
-    def get(self, request):
-        form = FeedbackFrom()
-        return render(request, 'feedback/feedback.html', context={'form': form})
-
-    def post(self, request):
-        form = FeedbackFrom(request.POST)
-        if form.is_valid():
-            print(form.cleaned_data)
-            form.save()
-            return HttpResponseRedirect('/done')
-        return render(request, 'feedback/feedback.html', context={'form': form})
+# class FeedbackView(View):
+#     def get(self, request):
+#         form = FeedbackFrom()
+#         return render(request, 'feedback/feedback.html', context={'form': form})
+#
+#     def post(self, request):
+#         form = FeedbackFrom(request.POST)
+#         if form.is_valid():
+#             print(form.cleaned_data)
+#             form.save()
+#             return HttpResponseRedirect('/done')
+#         return render(request, 'feedback/feedback.html', context={'form': form})
 
 
 class DoneView(View):
@@ -56,13 +66,10 @@ class ListFeedBack(ListView):
     context_object_name = 'all_feeds'
 
 
-class DetailFeedBack(TemplateView):
+class DetailFeedBack(DetailView):
     template_name = 'feedback/detail_feedback.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['current'] = Feedback.objects.get(id=kwargs['id_feedback'])
-        return context
+    model = Feedback
+    context_object_name = 'current'
 
 #
 # def index(request):
